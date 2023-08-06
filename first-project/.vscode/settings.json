@@ -1,0 +1,39 @@
+{
+  "cmake.cmakePath": "${workspaceFolder}/../cmake/bin/cmake",
+  "cmake.configureArgs": [
+    "-DCMAKE_TOOLCHAIN_FILE=${workspaceFolder}/../cross.cmake"
+  ],
+  "cmake.configureEnvironment": {
+    "SSH_TARGET": "pi@192.168.100.20",
+    "GDBSERVER_PORT": "1234",
+    "DEST_PATH": "/home/pi"
+  },
+  "cmake.generator": "MinGW Makefiles",
+  "cmake.loggingLevel": "info",
+  "cmake.useCMakePresets": "auto",
+
+  "files.associations": {
+    "*.COBOL*": "cobol",
+    "*.COB*": "cobol",
+    "*.COBCOPY*": "cobol",
+    "*.COPYBOOK*": "cobol",
+    "*.COPY*": "cobol",
+    "*.PL1*": "pl1",
+    "*.PLI*": "pl1",
+    "*.INC*": "pl1",
+    "*.INCLUDE*": "pl1",
+    "*.JCL*": "jcl",
+    "*.ASM*": "hlasm",
+    "*.ASSEMBLE*": "hlasm",
+    "*.HLASM*": "hlasm",
+    "*.HLA*": "hlasm",
+    "sdkconfig": "c",
+    "stdio.h": "c",
+    "ifaddrs.h": "c",
+    "if.h": "c",
+    "socket.h": "c",
+    "inet.h": "c",
+    "unistd.h": "c",
+    "stdlib.h": "c"
+  }
+}

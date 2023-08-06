@@ -1,0 +1,65 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "cmake",
+      "label": "CMake: configure current file",
+      "command": "configure",
+      "options": {
+        "environment": { "SOURCE_FILE": "${fileBasenameNoExtension}" }
+      }
+    },
+    {
+      "type": "cmake",
+      "label": "CMake: build & debug",
+      "command": "build",
+      "targets": ["debug"],
+      "dependsOn": ["CMake: configure current file"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "clear": true
+      },
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": [
+          {
+            "regexp": ".",
+            "file": 1,
+            "location": 2,
+            "message": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".",
+          "endsPattern": "."
+        }
+      }
+    },
+    {
+      "type": "cmake",
+      "label": "CMake: configure all files",
+      "command": "configure"
+    },
+    {
+      "type": "cmake",
+      "label": "CMake: build & copy all",
+      "command": "build",
+      "targets": ["copy_all"],
+      "dependsOn": ["CMake: configure all files"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "clear": false
+      },
+      "isBackground": false
+    }
+  ]
+}

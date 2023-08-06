@@ -1,0 +1,16 @@
+set(CMAKE_SYSTEM_NAME Linux)
+set(CMAKE_SYSTEM_PROCESSOR arm)
+#set toolchain path
+get_filename_component(current_path "${CMAKE_CURRENT_LIST_FILE}" DIRECTORY)
+set(toolchain_path ${current_path}/toolchain) # this cmake file is next to toolchain folder
+set(sysroot_target ${toolchain_path}/arm-linux-gnueabihf/sysroot)
+set(bin_path ${toolchain_path}/bin)
+set(CMAKE_C_COMPILER ${bin_path}/arm-linux-gnueabihf-gcc.exe)
+set(CMAKE_CXX_COMPILER ${bin_path}/arm-linux-gnueabihf-g++.exe)
+set(CMAKE_SYSROOT ${sysroot_target})
+SET(CMAKE_CXX_FLAGS "-march=armv7-a -marm -mfpu=neon -mfloat-abi=hard")
+SET(CMAKE_C_FLAGS ${CMAKE_CXX_FLAGS})
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)

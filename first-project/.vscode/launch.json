@@ -1,0 +1,28 @@
+{
+  "configurations": [
+    {
+      "name": "(gdb) Launch",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/${fileBasenameNoExtension}",
+      "miDebuggerServerAddress": "192.168.100.20:1234", // https://github.com/microsoft/vscode/issues/95371
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "externalConsole": false,
+      "targetArchitecture": "arm",
+      "MIMode": "gdb",
+      "stopAtEntry": true,
+      "windows": {
+        "miDebuggerPath": "${workspaceFolder}/../toolchain/bin/arm-linux-gnueabihf-gdb.exe"
+      },
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": false
+        }
+      ],
+      "preLaunchTask": "CMake: build & debug"
+    }
+  ]
+}
