@@ -24,7 +24,7 @@
             // ya que "CMake: build & debug" corre en background, debemos esperar que cree el ejecutable
             "type": "shell",
             "label": "Wait for Build File",
-            "command": "${workspaceFolder}\\wait_for_build.bat ${workspaceFolder}\\build\\${fileBasenameNoExtension}"
+            "command": "${workspaceFolder}\\..\\wait_for_build.bat ${workspaceFolder}\\build\\${fileBasenameNoExtension}"
           }
         ]
       },
