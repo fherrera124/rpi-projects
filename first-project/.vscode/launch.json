@@ -14,13 +14,19 @@
       "stopAtEntry": true,
       "windows": {
         "miDebuggerPath": "${workspaceFolder}/../toolchain/bin/arm-linux-gnueabihf-gdb.exe",
-        "deploySteps": [ // ya que "CMake: build & debug" corre en background, debemos esperar que cree el ejecutable
-        {
-          "type": "shell",
-          "label": "Wait for Build File",
-          "command": "${workspaceFolder}\\wait_for_build.bat ${workspaceFolder}\\build\\${fileBasenameNoExtension}"
-        }
-      ]
+        "deploySteps": [
+          {// en caso de que haya quedado una instancia espurea
+            "type": "shell",
+            "label": "kill gdbserver",
+            "command": "ssh pi@192.168.100.20 \"pkill gdbserver\""
+          },
+          {
+            // ya que "CMake: build & debug" corre en background, debemos esperar que cree el ejecutable
+            "type": "shell",
+            "label": "Wait for Build File",
+            "command": "${workspaceFolder}\\wait_for_build.bat ${workspaceFolder}\\build\\${fileBasenameNoExtension}"
+          }
+        ]
       },
       "setupCommands": [
         {
