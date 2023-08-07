@@ -1,18 +1,12 @@
-https://gnutoolchains.com/raspberry/
 
-descargue raspberry-gcc10.2.1-r2.exe (408 MB)
+## Raspberry
 
-https://gnutoolchains.com/raspberry/tutorial/
+-Testeado en Raspberry 3 B
+Requisitos en raspberry:
+    -SO raspbian
+    -apt install gdbserver
 
-installe en rpi: gdbserver
-
-# version de Cmake
-
-cmake-3.27.1-windows-x86_64
-
-# RPI 3 b
-
-# version de Raspbian
+### version de Raspbian
 ```
 cat /etc/os-release
 
@@ -34,20 +28,14 @@ https://vector-of-bool.github.io/docs/vscode-cmake-tools/
 https://vector-of-bool.github.io/docs/vscode-cmake-tools/settings.html
 https://vector-of-bool.github.io/docs/vscode-cmake-tools/debugging.html
 https://enes-ozturk.medium.com/remote-debugging-with-gdb-b4b0ca45b8c1
+https://gnutoolchains.com/raspberry/tutorial/
 
 
-plugins:
-CMake Tools
+## plugins:
+[vscode-cmake-tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools)
+[vscode-cpptools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools)
 
-Pasos:
-
-en la carpeta padre del proyecto (workspaceFolder) se encuentran las carpetas:
-
--cmake
--toolchain
-
-# Estructura:
-
+# Estructura de repositorio:
 ```
 rpi-projects/
 |
@@ -58,18 +46,26 @@ rpi-projects/
 |--> any_project_you_can_create/
 ```
 
-Crear un archivo boo.c
+## Cmake
+Descargar zip (windows) de https://cmake.org/download/
+descomprimir contenido como carpeta llamada `cmake`
 
-agregar en CMakeLists.txt:
+### version de Cmake:
+cmake-3.27.1-windows-x86_64
 
-add_executable_custom(boo.c)
+## Toolchain
+https://gnutoolchains.com/raspberry/
+
+descargue raspberry-gcc10.2.1-r2.exe (408 MB)
+
+## debugear
+
+TODO: agregar imagenes
 
 
-para debugear, ir al archivo, y debugear con (gdb) Launch
+# Compilar y copiar todos los ejecutables en destino
 
-
-
-para compilar y copiar todos los ejecutables en destino
+TODO: agregar imagenes
 
 ejecutar la tarea "CMake: build & copy all"
 
