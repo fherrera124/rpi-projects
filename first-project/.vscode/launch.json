@@ -13,13 +13,20 @@
       "MIMode": "gdb",
       "stopAtEntry": true,
       "windows": {
-        "miDebuggerPath": "${workspaceFolder}/../toolchain/bin/arm-linux-gnueabihf-gdb.exe"
+        "miDebuggerPath": "${workspaceFolder}/../toolchain/bin/arm-linux-gnueabihf-gdb.exe",
+        "deploySteps": [ // ya que "CMake: build & debug" corre en background, debemos esperar que cree el ejecutable
+        {
+          "type": "shell",
+          "label": "Wait for Build File",
+          "command": "${workspaceFolder}\\wait_for_build.bat ${workspaceFolder}\\build\\${fileBasenameNoExtension}"
+        }
+      ]
       },
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",
           "text": "-enable-pretty-printing",
-          "ignoreFailures": false
+          "ignoreFailures": true
         }
       ],
       "preLaunchTask": "CMake: build & debug"

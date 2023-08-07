@@ -34,6 +34,7 @@
     "socket.h": "c",
     "inet.h": "c",
     "unistd.h": "c",
-    "stdlib.h": "c"
+    "stdlib.h": "c",
+    "module.h": "c"
   }
 }

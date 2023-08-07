@@ -28,13 +28,13 @@ SUPPORT_URL="http://www.raspbian.org/RaspbianForums"
 BUG_REPORT_URL="http://www.raspbian.org/RaspbianBugs"
 ```
 
-# Comandos utiles
-
-`kill $(pgrep gdbserver)`
-
-urls de utilidad:
-
+## urls de utilidad:
+https://github.com/microsoft/vscode-cmake-tools/tree/main/docs
+https://vector-of-bool.github.io/docs/vscode-cmake-tools/
 https://vector-of-bool.github.io/docs/vscode-cmake-tools/settings.html
+https://vector-of-bool.github.io/docs/vscode-cmake-tools/debugging.html
+https://enes-ozturk.medium.com/remote-debugging-with-gdb-b4b0ca45b8c1
+
 
 plugins:
 CMake Tools
@@ -48,14 +48,15 @@ en la carpeta padre del proyecto (workspaceFolder) se encuentran las carpetas:
 
 # Estructura:
 
+```
 rpi-projects/
 |
 |--> cmake/
 |--> toolchain/
 |--> cross.cmake
-|--> test-vscode/        <-- this vscode proyect
-|--> any_other_project/
-
+|--> first-project/        <-- a vscode project
+|--> any_project_you_can_create/
+```
 
 Crear un archivo boo.c
 
@@ -76,3 +77,10 @@ ctrl shift p, escribir -> Tasks: Run Task
 
 y buscar dicha tarea
 
+
+## Notas
+
+Asegurarse de que no este corriendo gdbserver, esto puede suceder si el debuger de vscode quedo en un estado fallido
+y el server sigue aun corriendo. Para tales casos:
+
+`pkill gdbserver`

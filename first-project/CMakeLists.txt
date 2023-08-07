@@ -5,6 +5,9 @@ project(RPICrossCompilingProject VERSION 1.0.0)
 # Source directories
 set(executables)
 
+# Encuentra la biblioteca Threads (pthread) primero
+find_package(Threads REQUIRED)
+
 # ############## functions #################
 function(add_executable_custom source_file)
     set(source_file "${CMAKE_SOURCE_DIR}/src/${source_file}")
@@ -18,6 +21,8 @@ endfunction()
 add_executable_custom(hello_word.c)
 add_executable_custom(network_info.c)
 add_executable_custom(tcp_server.c)
+add_executable_custom(resource.cpp)
+target_link_libraries(resource PRIVATE Threads::Threads)
 
 # Custom target for Only Building
 add_custom_target(build ALL)
@@ -28,11 +33,10 @@ set(port $ENV{GDBSERVER_PORT})
 
 if(DEFINED ENV{SOURCE_FILE})
     set(SOURCE_FILE $ENV{SOURCE_FILE})
-
     add_custom_target(debug DEPENDS ${SOURCE_FILE})
     add_custom_command(TARGET debug POST_BUILD
         COMMAND scp ${CMAKE_CURRENT_BINARY_DIR}/${SOURCE_FILE} ${target}:${path}
-        COMMAND ssh -L 1234:localhost:${port} ${target} 'nohup sh -c "chmod +x ${SOURCE_FILE} && gdbserver :${port} ${SOURCE_FILE} 2>&1 &" '
+        COMMAND ssh ${target} 'nohup sh -c "chmod +x ${SOURCE_FILE} && gdbserver :${port} ${SOURCE_FILE} 2>&1 &" '
     )
 
     add_custom_target(copy DEPENDS ${SOURCE_FILE})
