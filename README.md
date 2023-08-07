@@ -76,11 +76,3 @@ ejecutar la tarea "CMake: build & copy all"
 ctrl shift p, escribir -> Tasks: Run Task
 
 y buscar dicha tarea
-
-
-## Notas
-
-Asegurarse de que no este corriendo gdbserver, esto puede suceder si el debuger de vscode quedo en un estado fallido
-y el server sigue aun corriendo. Para tales casos:
-
-`pkill gdbserver`
