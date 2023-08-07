@@ -23,12 +23,12 @@ BUG_REPORT_URL="http://www.raspbian.org/RaspbianBugs"
 ```
 
 ## urls de utilidad:
-[1](https://github.com/microsoft/vscode-cmake-tools/tree/main/docs)
-[2](https://vector-of-bool.github.io/docs/vscode-cmake-tools/)
-[3](https://vector-of-bool.github.io/docs/vscode-cmake-tools/settings.html)
-[4](https://vector-of-bool.github.io/docs/vscode-cmake-tools/debugging.html)
-[5](https://enes-ozturk.medium.com/remote-debugging-with-gdb-b4b0ca45b8c1)
-[6](https://gnutoolchains.com/raspberry/tutorial/)
+- [1](https://github.com/microsoft/vscode-cmake-tools/tree/main/docs)
+- [2](https://vector-of-bool.github.io/docs/vscode-cmake-tools/)
+- [3](https://vector-of-bool.github.io/docs/vscode-cmake-tools/settings.html)
+- [4](https://vector-of-bool.github.io/docs/vscode-cmake-tools/debugging.html)
+- [5](https://enes-ozturk.medium.com/remote-debugging-with-gdb-b4b0ca45b8c1)
+- [6](https://gnutoolchains.com/raspberry/tutorial/)
 
 
 ## plugins:
@@ -74,3 +74,46 @@ TODO: agregar imagenes
 2. ctrl shift p, escribir -> Tasks: Run Task
 
 3. Buscar dicha tarea
+
+
+## Utilizar libreria libcurl
+
+Las siguientes instrucciones para instalar curl en la carpeta toolchain.
+Podes optar por la instalacion desde RPI, o directa utilizando la carpeta
+`curl` de este repositorio.
+
+### Instalacion desde RPI
+
+1. Para eso es necesario acceder a la raspberry y ejecutar:
+
+`sudo apt install libcurl4-openssl-dev`
+
+Los componentes relevantes son:
+
+- Archivos de encabezado: `/usr/include/arm-linux-gnueabihf/curl`
+- Biblioteca estática: `/usr/lib/arm-linux-gnueabihf/libcurl.a`
+- Biblioteca compartida (dinámica): `/usr/lib/arm-linux-gnueabihf/libcurl.so`
+
+Podes guiarte del siguiente comando para obtener las rutas en caso de ser distintas:
+
+`dpkg-query -L libcurl4-openssl-dev`
+
+2. Copiado desde origen (RPI) a destino (carpeta toolchain local):
+
+- `/usr/include/arm-linux-gnueabihf/curl` en `toolchain\arm-linux-gnueabihf\sysroot\usr\include\curl`
+- `/usr/lib/arm-linux-gnueabihf/{libcurl.a, libcurl.so}` en `toolchain\arm-linux-gnueabihf\sysroot\lib`
+
+
+### Instalacion "rápida"
+
+Como no pesan muchos los archivos, puse dentro de la carpeta `curl` los archivos necesarios
+para usar `curl`:
+
+- `.\curl\curl` en `toolchain\arm-linux-gnueabihf\sysroot\usr\include\curl`
+- `.\curl\{libcurl.a, libcurl.so}` en `toolchain\arm-linux-gnueabihf\sysroot\lib`
+
+### `CMakeLists.txt`
+
+Notar que en `CMakeLists.txt` se encuentra la instruccion que se encarga de importar `CURL`:
+
+`find_package(CURL REQUIRED)`

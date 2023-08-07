@@ -8,6 +8,9 @@ set(executables)
 # Encuentra la biblioteca Threads (pthread) primero
 find_package(Threads REQUIRED)
 
+# Encuentra la biblioteca libcurl
+find_package(CURL REQUIRED)
+
 # ############## functions #################
 function(add_executable_custom source_file)
     set(source_file "${CMAKE_SOURCE_DIR}/src/${source_file}")
@@ -22,7 +25,9 @@ add_executable_custom(hello_word.c)
 add_executable_custom(network_info.c)
 add_executable_custom(tcp_server.c)
 add_executable_custom(resource.cpp)
+add_executable_custom(http_test.cpp)
 target_link_libraries(resource PRIVATE Threads::Threads)
+target_link_libraries(http_test PRIVATE CURL::libcurl)
 
 # Custom target for Only Building
 add_custom_target(build ALL)
