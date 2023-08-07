@@ -1,10 +1,10 @@
 
 ## Raspberry
 
--Testeado en Raspberry 3 B
+- Testeado en Raspberry 3 B
 Requisitos en raspberry:
-    -SO raspbian
-    -apt install gdbserver
+    - SO raspbian
+    - apt install gdbserver
 
 ### version de Raspbian
 ```
@@ -23,12 +23,12 @@ BUG_REPORT_URL="http://www.raspbian.org/RaspbianBugs"
 ```
 
 ## urls de utilidad:
-https://github.com/microsoft/vscode-cmake-tools/tree/main/docs
-https://vector-of-bool.github.io/docs/vscode-cmake-tools/
-https://vector-of-bool.github.io/docs/vscode-cmake-tools/settings.html
-https://vector-of-bool.github.io/docs/vscode-cmake-tools/debugging.html
-https://enes-ozturk.medium.com/remote-debugging-with-gdb-b4b0ca45b8c1
-https://gnutoolchains.com/raspberry/tutorial/
+[1](https://github.com/microsoft/vscode-cmake-tools/tree/main/docs)
+[2](https://vector-of-bool.github.io/docs/vscode-cmake-tools/)
+[3](https://vector-of-bool.github.io/docs/vscode-cmake-tools/settings.html)
+[4](https://vector-of-bool.github.io/docs/vscode-cmake-tools/debugging.html)
+[5](https://enes-ozturk.medium.com/remote-debugging-with-gdb-b4b0ca45b8c1)
+[6](https://gnutoolchains.com/raspberry/tutorial/)
 
 
 ## plugins:
@@ -36,14 +36,16 @@ https://gnutoolchains.com/raspberry/tutorial/
 [vscode-cpptools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools)
 
 # Estructura de repositorio:
-```
+
+
+```txt
 rpi-projects/
 |
-|--> cmake/
-|--> toolchain/
-|--> cross.cmake
-|--> first-project/        <-- a vscode project
-|--> any_project_you_can_create/
+|── cmake/
+|── toolchain/
+|── cross.cmake
+|── first-project/        <-- a vscode project
+|── any_project_you_can_create/
 ```
 
 ## Cmake
@@ -67,8 +69,8 @@ TODO: agregar imagenes
 
 TODO: agregar imagenes
 
-ejecutar la tarea "CMake: build & copy all"
+1. ejecutar la tarea "CMake: build & copy all"
 
-ctrl shift p, escribir -> Tasks: Run Task
+2. ctrl shift p, escribir -> Tasks: Run Task
 
-y buscar dicha tarea
+3. Buscar dicha tarea

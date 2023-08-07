@@ -20,9 +20,9 @@ private:
 
 class ThreadWorker {
 public:
-    ThreadWorker(int id, Resource& res) : id(id), resource(res) {}
+    ThreadWorker(int id, Resource& res) : id(id), resource(res) {} // {} está vacío porque toda la inicialización se ha realizado en la lista de inicialización.
 
-    void operator()() {
+    void operator()() { //Function Call Operator
         resource.useResource(id);
     }
 
