@@ -3,14 +3,14 @@
   "tasks": [
     {
       // intento eliminar primero el ejecutable "viejo" si es que existe,
-      // para que el deploy step "Wait for Build File" no lo encuentre
+      // para que el deploySteps "Wait for Build File" no lo encuentre
       "label": "Eliminar archivo",
       "type": "shell",
       "linux": {
         "command": "rm ${workspaceFolder}/build/${fileBasenameNoExtension} || true"
       },
       "windows": {
-        "command": "del ${workspaceFolder}\\build\\${fileBasenameNoExtension} 2> nul || 0",
+        "command": "del ${workspaceFolder}\\build\\${fileBasenameNoExtension} 2> nul || 0"
       }
     },
     {
@@ -53,6 +53,8 @@
         }
       }
     },
+
+    // buildear y copiar todos los binarios a destino (pendiente hacer chmod +x a cada uno de ellos)
     {
       "type": "cmake",
       "label": "CMake: configure all files",

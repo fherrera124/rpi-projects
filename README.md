@@ -1,3 +1,4 @@
+# Proyectos Raspberry con C, C++, CMake, vscode plugins, etc
 
 ## Raspberry
 
@@ -23,12 +24,12 @@ BUG_REPORT_URL="http://www.raspbian.org/RaspbianBugs"
 ```
 
 ## urls de utilidad:
-- [1](https://github.com/microsoft/vscode-cmake-tools/tree/main/docs)
-- [2](https://vector-of-bool.github.io/docs/vscode-cmake-tools/)
-- [3](https://vector-of-bool.github.io/docs/vscode-cmake-tools/settings.html)
-- [4](https://vector-of-bool.github.io/docs/vscode-cmake-tools/debugging.html)
-- [5](https://enes-ozturk.medium.com/remote-debugging-with-gdb-b4b0ca45b8c1)
-- [6](https://gnutoolchains.com/raspberry/tutorial/)
+- [vscode-cmake-tools/docs](https://github.com/microsoft/vscode-cmake-tools/tree/main/docs)
+- [vscode-cmake-tools](https://vector-of-bool.github.io/docs/vscode-cmake-tools/)
+- [vscode-cmake-tools/settings](https://vector-of-bool.github.io/docs/vscode-cmake-tools/settings.html)
+- [vscode-cmake-tools/debugging](https://vector-of-bool.github.io/docs/vscode-cmake-tools/debugging.html)
+- [remote-debugging-with-gdb](https://enes-ozturk.medium.com/remote-debugging-with-gdb-b4b0ca45b8c1)
+- [gnutoolchains.com/raspberry/tutorial](https://gnutoolchains.com/raspberry/tutorial/)
 
 
 ## plugins:
@@ -37,16 +38,25 @@ BUG_REPORT_URL="http://www.raspbian.org/RaspbianBugs"
 
 # Estructura de repositorio:
 
-
 ```txt
 rpi-projects/
 |
+|── curl/
 |── cmake/
 |── toolchain/
 |── cross.cmake
-|── first-project/        <-- a vscode project
+|── first-project/
+│   ├── .vscode/
+│       ├── launch.json
+│       ├── settings.json
+│       ├── tasks.json
+│   ├── CMakeLists.txt
+│   ├── src
+│       ├── *.c 
 |── any_project_you_can_create/
 ```
+
+La carpeta `first-project` corresponde a un proyecto de `vscode`
 
 ## Cmake
 Descargar zip (windows) de https://cmake.org/download/
