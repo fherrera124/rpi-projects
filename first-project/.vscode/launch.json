@@ -16,19 +16,22 @@
         "miDebuggerPath": "${workspaceFolder}/../toolchain/bin/arm-linux-gnueabihf-gdb.exe",
         "deploySteps": [
           {
-            // en caso de que haya quedado una instancia espurea
+            // just in case for some reason, an active gdbserver is active
             "type": "shell",
             "label": "kill gdbserver",
             "command": "ssh pi@192.168.100.20 \"pkill gdbserver || true\""
           },
           {
-            // ya que "CMake: build & debug" corre en background, debemos esperar que cree el ejecutable
+            // since "CMake: build & debug" task run in background, in some cases gdb may complain
+            // that the program is not present instantly (still building). So the approach is to wait
+            // indefinitely until the program is present in the build folder
             "type": "shell",
             "label": "Wait for Build File",
             "command": "${workspaceFolder}\\..\\wait_for_build.bat ${workspaceFolder}\\build\\${fileBasenameNoExtension}"
           }
         ]
       },
+      "linux": {}, // TODO:
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",

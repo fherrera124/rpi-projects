@@ -47,9 +47,9 @@ rpi-projects/
 |── cross.cmake
 |── first-project/
 │   ├── .vscode/
-│       ├── launch.json
-│       ├── settings.json
-│       ├── tasks.json
+│   │   ├── launch.json
+│   |   ├── settings.json
+│   |   ├── tasks.json
 │   ├── CMakeLists.txt
 │   ├── src
 │       ├── *.c 

@@ -2,9 +2,8 @@
   "version": "2.0.0",
   "tasks": [
     {
-      // intento eliminar primero el ejecutable "viejo" si es que existe,
-      // para que el deploySteps "Wait for Build File" no lo encuentre
-      "label": "Eliminar archivo",
+      // We need to try to delete possible old executable asap, before the debugger grabs it
+      "label": "Delete old executable",
       "type": "shell",
       "linux": {
         "command": "rm ${workspaceFolder}/build/${fileBasenameNoExtension} || true"
@@ -17,7 +16,7 @@
       "type": "cmake",
       "label": "CMake: configure current file",
       "command": "configure",
-      "dependsOn": ["Eliminar archivo"],
+      "dependsOn": ["Delete old executable"],
       "options": {
         "environment": { "SOURCE_FILE": "${fileBasenameNoExtension}" }
       }
