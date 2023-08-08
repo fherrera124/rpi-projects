@@ -1,13 +1,27 @@
-# Proyectos Raspberry con C, C++, CMake, vscode plugins, etc
+# Proyectos Raspberry with toolchains
 
-## Raspberry
+## Motivo
+La idea surgió de querer poder realizar proyectos tanto en C como en C++ en mi Raspberry
+para aprender más sobre librerias POSIX de Linux, aprender C++, de Cmake, etc.
+Como actualmente utilizo VsCode en windows, me puse a investigar como sería
+posible realizar `crosscompiling`. Pero sin dejar de lado la posibilidad de debugear de manera
+sencilla y casi instantánea cualquier porgrama que realizace. Me encontré que vscode
+tiene buen coporte para ello mediante el uso de configuraciones en archivos json y plugins
+que se pueden instalar. Me llevó un par de días lograr lo que específicamente yo buscaba.
 
-- Testeado en Raspberry 3 B
-Requisitos en raspberry:
-    - SO raspbian
-    - apt install gdbserver
+## Lo que yo buscaba
+1. Lo primero: quería poder realizar un programa, y que mediante un "click" se compilase el archivo
+actual, suba mediante ssh/scp, levantar `gdbserver` en la raspberry, y que localmente
+en vscode, poder debugear el programa tranquilamente.
+2. Lo segundo: también quería, en caso de no especificar ningun programa en particular,
+que todos los programas se compilaran y se subieran todos a mi raspberry y nada más.
 
-### version de Raspbian
+## Sobre mi Raspberry
+
+### Version de mi Raspberry
+- version 3 B.
+
+### Version de Raspbian:
 ```
 cat /etc/os-release
 
@@ -23,24 +37,53 @@ SUPPORT_URL="http://www.raspbian.org/RaspbianForums"
 BUG_REPORT_URL="http://www.raspbian.org/RaspbianBugs"
 ```
 
-## urls de utilidad:
-- [vscode-cmake-tools/docs](https://github.com/microsoft/vscode-cmake-tools/tree/main/docs)
-- [vscode-cmake-tools](https://vector-of-bool.github.io/docs/vscode-cmake-tools/)
-- [vscode-cmake-tools/settings](https://vector-of-bool.github.io/docs/vscode-cmake-tools/settings.html)
-- [vscode-cmake-tools/debugging](https://vector-of-bool.github.io/docs/vscode-cmake-tools/debugging.html)
-- [remote-debugging-with-gdb](https://enes-ozturk.medium.com/remote-debugging-with-gdb-b4b0ca45b8c1)
-- [gnutoolchains.com/raspberry/tutorial](https://gnutoolchains.com/raspberry/tutorial/)
+### Dependencias:
 
+- `gdbserver (sudo apt install gdbserver)`
 
-## plugins:
-[vscode-cmake-tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools)
-[vscode-cpptools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools)
+## SO
+- Windows 11 (luego intentare desde una pc con linux)
 
-# Estructura de repositorio:
+## Cmake
+- La version que descargué es la `cmake-3.27.1-windows-x86_64`. Descargué el [zip](https://github.com/Kitware/CMake/releases/download/v3.27.1/cmake-3.27.1-windows-x86_64.zip) de https://cmake.org/download/ y
+descomprimir contenido como carpeta llamada `cmake`
+- Me quedó asi:
+```txt
+cmake
+|── bin
+|── doc
+|── main
+|── share
+
+```
+
+## Toolchain
+https://gnutoolchains.com/raspberry/
+
+descargue raspberry-gcc10.2.1-r2.exe (408 MB). Te deja seleccionar la carpeta destino de instalacion.
+- Me quedó asi:
+```txt
+toolchain
+|── arm-linux-gnueabihf/
+|── bin/
+|── include/
+|── lib/
+|── libexec/
+|── share/
+|── x86_64-w64-mingw32/
+|── ... otros archivos
+```
+
+## Vscode:
+- Es esencial instalar [Visual Studio Code](https://code.visualstudio.com/download)
+Plugins necesarios:
+- [vscode-cmake-tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools)
+- [vscode-cpptools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools)
+
+## Estructura de este repositorio:
 
 ```txt
 rpi-projects/
-|
 |── curl/
 |── cmake/
 |── toolchain/
@@ -57,18 +100,6 @@ rpi-projects/
 ```
 
 La carpeta `first-project` corresponde a un proyecto de `vscode`
-
-## Cmake
-Descargar zip (windows) de https://cmake.org/download/
-descomprimir contenido como carpeta llamada `cmake`
-
-### version de Cmake:
-cmake-3.27.1-windows-x86_64
-
-## Toolchain
-https://gnutoolchains.com/raspberry/
-
-descargue raspberry-gcc10.2.1-r2.exe (408 MB)
 
 ## debugear
 
@@ -127,3 +158,11 @@ para usar `curl`:
 Notar que en `CMakeLists.txt` se encuentra la instruccion que se encarga de importar `CURL`:
 
 `find_package(CURL REQUIRED)`
+
+## urls de utilidad:
+- [vscode-cmake-tools/docs](https://github.com/microsoft/vscode-cmake-tools/tree/main/docs)
+- [vscode-cmake-tools](https://vector-of-bool.github.io/docs/vscode-cmake-tools/)
+- [vscode-cmake-tools/settings](https://vector-of-bool.github.io/docs/vscode-cmake-tools/settings.html)
+- [vscode-cmake-tools/debugging](https://vector-of-bool.github.io/docs/vscode-cmake-tools/debugging.html)
+- [remote-debugging-with-gdb](https://enes-ozturk.medium.com/remote-debugging-with-gdb-b4b0ca45b8c1)
+- [gnutoolchains.com/raspberry/tutorial](https://gnutoolchains.com/raspberry/tutorial/)
